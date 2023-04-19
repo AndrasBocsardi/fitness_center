@@ -66,6 +66,12 @@
 	  <MauiXaml Update="View\AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\AssignTicketPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\ClientDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\UserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

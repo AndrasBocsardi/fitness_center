@@ -31,6 +31,12 @@ public static class MauiProgram
         builder.Services.AddSingleton<UserPage>();
         builder.Services.AddSingleton<UserPageViewModel>();
 
+        builder.Services.AddTransient<ClientDetails>();
+        builder.Services.AddTransient<ClientDetailsViewModel>();
+
+        builder.Services.AddTransient<AssignTicketPage>();
+        builder.Services.AddTransient<AssignTicketPageViewModel>();
+
         return builder.Build();
 	}
 }

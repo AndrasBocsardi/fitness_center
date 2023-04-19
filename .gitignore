@@ -8,3 +8,8 @@
 *.appxrecipe
 *.dll
 *.pdb
+*.csproj
+*.user
+*.editorconfig
+*.editorconfig
+.vs/fitness_terem/v17/.suo

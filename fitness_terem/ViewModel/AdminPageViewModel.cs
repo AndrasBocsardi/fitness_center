@@ -44,9 +44,12 @@ public partial class AdminPageViewModel :ObservableObject
 
 
     [RelayCommand]
-    async void OnTextChanged()
+    async void NavigateToClientDetails(Client client)
     {
-
+        await Shell.Current.GoToAsync(nameof(ClientDetails), true, new Dictionary<string, object>
+        {
+            {"Client", client }
+        });
     }
     
 
