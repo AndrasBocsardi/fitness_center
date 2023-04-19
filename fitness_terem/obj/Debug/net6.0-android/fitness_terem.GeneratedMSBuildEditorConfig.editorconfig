@@ -1,0 +1,59 @@
+is_global = true
+build_property.TargetFramework = net6.0-android
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = fitness_terem
+build_property.ProjectDir = C:\Egyetem\.NET\Projekt\fitness_terem\fitness_center\fitness_terem\
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/View/AddClient.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.View.AddClient.xaml
+build_metadata.AdditionalFiles.TargetPath = View\AddClient.xaml
+build_metadata.AdditionalFiles.RelativePath = View\AddClient.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/View/AdminPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.View.AdminPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\AdminPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\AdminPage.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/View/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.View.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\MainPage.xaml
+
+[C:/Egyetem/.NET/Projekt/fitness_terem/fitness_center/fitness_terem/View/UserPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = fitness_terem.View.UserPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\UserPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\UserPage.xaml

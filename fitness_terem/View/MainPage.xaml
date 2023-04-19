@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:fitness_terem.ViewModel"
+             x:Class="fitness_terem.MainPage"
+             BackgroundImageSource="background.png"
+             x:DataType="viewmodel:MainViewModel">
+
+    <Grid Padding="20"
+          ColumnSpacing="10"
+          RowSpacing="50" 
+          RowDefinitions="100, Auto, Auto, Auto"
+          ColumnDefinitions="*">
+        
+        <Image Grid.ColumnSpan="2"
+               Source="logo.png"
+               BackgroundColor="White"/>
+
+        <Entry Placeholder="Enter email"
+               Grid.Row="1"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Email}"/>
+
+        <Entry Placeholder="Enter password"
+               Grid.Row="2"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Password}"/>
+
+        <Button Text="Log in"
+                Command="{Binding LogInCommand}"
+                Grid.Row="3"
+                MaximumWidthRequest="150"
+                TextColor="Black"/>
+
+
+    </Grid>
+
+</ContentPage>

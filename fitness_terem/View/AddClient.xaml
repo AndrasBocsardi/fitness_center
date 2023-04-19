@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_terem.View.AddClient"
+             xmlns:viewmodel="clr-namespace:fitness_terem.ViewModel"
+             x:DataType="viewmodel:AddClientViewModel"
+             BackgroundImageSource="background.png"
+             Title="AddClient">
+
+    <Grid Padding="20"
+          ColumnSpacing="10"
+          RowSpacing="40"
+          RowDefinitions="150, Auto, Auto, Auto, Auto, Auto, Auto"
+          ColumnDefinitions="*">
+
+        <Entry  
+               Placeholder="Enter name"
+               Grid.Row="1"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Name}"/>
+
+        <Entry Placeholder="Enter email"
+               Grid.Row="2"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Email}"/>
+
+        <Entry Placeholder="Enter password"
+               Grid.Row="3"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Password}"/>
+
+        <Entry Placeholder="Enter phone number"
+               Grid.Row="4"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Phone_nr}"/>
+
+        <Entry Placeholder="Enter adress"
+               Grid.Row="5"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding Address}"/>
+
+        <Button Text="Add Client"
+                Command="{Binding AddClientCommand}"
+                Grid.Row="6"
+                MaximumWidthRequest="150"
+                TextColor="Black"
+                FontSize="18"/>
+
+
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:fitness_terem.ViewModel"
+             x:Class="fitness_terem.AdminPage"
+             x:DataType="viewmodel:AdminPageViewModel"
+             xmlns:model ="clr-namespace:fitness_terem.Model"
+             BackgroundImageSource="background.png">
+    <ScrollView>
+    <Grid Padding="20"
+          ColumnSpacing="10"
+          RowSpacing="40"
+          RowDefinitions="50, 50, Auto"
+          ColumnDefinitions="0.5*, 0.5*">
+
+        <Button Text="List clients"
+                Command="{Binding ListClientsCommand}"
+                MaximumWidthRequest="200"
+                BackgroundColor="#ded943"
+                FontSize="20"/>
+
+        <Button Text="Add new client"
+                Grid.Column="1"
+                Command="{Binding NavigateToAddClientCommand}"
+                MaximumWidthRequest="200"
+                BackgroundColor="#ded943"
+                FontSize="20"/>
+
+            <SearchBar Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       BackgroundColor="#3d3d3d"
+                       MaximumWidthRequest="800"/>
+
+            <CollectionView ItemsSource="{Binding ClientList}" Grid.ColumnSpan="2" Grid.Row="2"
+                        BackgroundColor="#3d3d3d"
+                        MaximumWidthRequest="1000">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Client">
+                        
+                        <Grid ColumnDefinitions="*, *, *, *, *, *">
+                            <Label Text="{Binding Client_id}" FontSize="18"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" FontSize="18"/>
+                            <Label Grid.Column="2" Text="{Binding Email}" FontSize="18"/>
+                            <Label Grid.Column="3" Text="{Binding Password}" FontSize="18"/>
+                            <Label Grid.Column="4" Text="{Binding Phone_nr}" FontSize="18"/>
+                            <Label Grid.Column="5" Text="{Binding Address}" FontSize="18"/>
+                        </Grid>
+                        
+                </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+       
+    </Grid>
+    </ScrollView>
+</ContentPage>
