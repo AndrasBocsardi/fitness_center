@@ -19,6 +19,9 @@ public partial class ClientDetailsViewModel: ObservableObject
     [RelayCommand]
     async void NavigateToAssignTicket()
     {
-        await Shell.Current.GoToAsync(nameof(AssignTicketPage));
+        await Shell.Current.GoToAsync(nameof(AssignTicketPage), true, new Dictionary<string, object>
+        {
+            {"Client", Client }
+        });
     }
 }

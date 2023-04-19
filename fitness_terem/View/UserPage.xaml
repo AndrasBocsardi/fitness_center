@@ -6,10 +6,41 @@
              x:DataType="viewmodel:UserPageViewModel"
              xmlns:model="clr-namespace:fitness_terem.Model"
              Title="UserPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Email}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <!--<ScrollView>
+        <Grid Padding="20"
+          ColumnSpacing="10"
+          RowSpacing="40"
+          RowDefinitions="50, Auto">
+
+            <Button Text="Show my tickets"
+                Command="{Binding ListClientsCommand}"
+                MaximumWidthRequest="200"
+                BackgroundColor="#ded943"
+                FontSize="20"/>
+
+            <CollectionView ItemsSource="{Binding ClientList}" Grid.ColumnSpan="2" Grid.Row="2"
+                        
+                        MaximumWidthRequest="1000">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#3d3d3d">
+                            <Grid ColumnDefinitions="*, *, *, *, *, *">
+                                <Label Text="{Binding Tic}" FontSize="18"/>
+                                <Label Grid.Column="1" Text="{Binding Name}" FontSize="18"/>
+                                <Label Grid.Column="2" Text="{Binding Email}" FontSize="18"/>
+                                <Label Grid.Column="3" Text="{Binding Password}" FontSize="18"/>
+                                <Label Grid.Column="4" Text="{Binding Phone_nr}" FontSize="18"/>
+                                <Label Grid.Column="5" Text="{Binding Address}" FontSize="18"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+    </ScrollView>-->
+
 </ContentPage>

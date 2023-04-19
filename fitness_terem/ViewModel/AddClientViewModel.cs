@@ -31,7 +31,11 @@ public partial class AddClientViewModel: ObservableObject
     [RelayCommand]
     async void AddClient()
     {
-        await App.FitnessRepo.AddNewClient(Name, Email, Password, Address, Phone_nr);
+        if(await App.FitnessRepo.AddNewClient(Name, Email, Password, Address, Phone_nr) > 0)
+        {
+            await Shell.Current.DisplayAlert("New client was created", "You will be redirected", "OK");
+            await Shell.Current.GoToAsync(nameof(AdminPage));
+        }
 
     }
 

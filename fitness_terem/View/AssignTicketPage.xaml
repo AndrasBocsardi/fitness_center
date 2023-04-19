@@ -10,12 +10,12 @@
     <Grid Padding="20"
           ColumnSpacing="10"
           RowSpacing="40"
-          RowDefinitions="150, Auto, Auto, Auto, Auto, Auto, Auto"
+          RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
           ColumnDefinitions="*">
 
         <Entry  
                Placeholder="Enter ticket name"
-               Grid.Row="1"
+               Grid.Row="0"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
@@ -23,7 +23,8 @@
                Text="{Binding TicketName}"/>
 
         <Entry Placeholder="Enter ticket price"
-               Grid.Row="2"
+               
+               Grid.Row="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
@@ -31,7 +32,7 @@
                Text="{Binding TicketPrice}"/>
 
         <Entry Placeholder="Number of days valid"
-               Grid.Row="3"
+               Grid.Row="2"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
@@ -39,7 +40,7 @@
                Text="{Binding NrOfDaysValid}"/>
 
         <Entry Placeholder="Number of entry valid"
-               Grid.Row="4"
+               Grid.Row="3"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
@@ -47,7 +48,7 @@
                Text="{Binding NrOfEntryValid}"/>
 
         <Entry Placeholder="From:"
-               Grid.Row="5"
+               Grid.Row="4"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
@@ -55,16 +56,16 @@
                Text="{Binding StartTimeOfDay}"/>
 
         <Entry Placeholder="To:"
-               Grid.Row="6"
+               Grid.Row="5"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
                TextColor="Black"
                Text="{Binding EndTimeOfDay}"/>
 
-        <Button Text="To"
-                
-                Grid.Row="7"
+        <Button Text="Assign"
+                Command="{Binding AssignTicketCommand}"
+                Grid.Row="6"
                 MaximumWidthRequest="150"
                 TextColor="Black"
                 FontSize="18"/>

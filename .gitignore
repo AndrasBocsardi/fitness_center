@@ -17,3 +17,7 @@
 *.backup
 *.cs
 *.v2
+*.dll
+*.appxrecipe
+*.pdb
+.vs/fitness_terem/v17/.suo

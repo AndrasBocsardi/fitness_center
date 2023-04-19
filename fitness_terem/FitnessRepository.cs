@@ -37,10 +37,10 @@ namespace fitness_terem
             _dbPath= dbPath;
         }
 
-        public async Task AddNewClient(string name, string email, string password, string address, string phone_nr)
+        public async Task<int> AddNewClient(string name, string email, string password, string address, string phone_nr)
         {
             await Init();
-            await conn.InsertAsync(new Client {Name = name, Email = email, Password = password, Address = address, Phone_nr = phone_nr, Inserted_date = DateTime.Now, Description = "" });
+            return await conn.InsertAsync(new Client {Name = name, Email = email, Password = password, Address = address, Phone_nr = phone_nr, Inserted_date = DateTime.Now, Description = "" });
             
         }
 
@@ -75,16 +75,19 @@ namespace fitness_terem
             return client.Description == "admin";
         }
 
-        public async Task AddNewTicket(string name, int price, int nr_of_days_valid, int nr_of_entry_valid, string startTime, string endTime)
+        public async Task<TicketType> AddNewTicket(string name, int price, int nr_of_days_valid, int nr_of_entry_valid, string startTime, string endTime)
         {
             await Init();
-            await conn.InsertAsync(new TicketType { Name = name, Price = price, Nr_of_days_valid = nr_of_days_valid, Nr_of_entry_valid = nr_of_entry_valid, Start_time_of_day = startTime, End_time_of_day = endTime, Gym_id = 1, Is_deleted = false });
+            TicketType newTicketType = new TicketType { Name = name, Price = price, Nr_of_days_valid = nr_of_days_valid, Nr_of_entry_valid = nr_of_entry_valid, Start_time_of_day = startTime, End_time_of_day = endTime, Gym_id = 1, Is_deleted = false };
+            await conn.InsertAsync(newTicketType);
+
+            return newTicketType;
         }
 
-        public async Task AssignTicketToClient(int client_id, int ticket_id, int price)
+        public async Task<int> AssignTicketToClient(int client_id, int ticket_id, int price)
         {
             await Init();
-            await conn.InsertAsync(new ClientTicket { Client_id = client_id, Ticket_id = ticket_id, Purchase_date = DateTime.Now, Entry_count = 0, Purchase_price = price, Is_valid = true, Gym_id = 1 });
+            return await conn.InsertAsync(new ClientTicket { Client_id = client_id, Ticket_id = ticket_id, Purchase_date = DateTime.Now, Entry_count = 0, Purchase_price = price, Is_valid = true, Gym_id = 1 });
         }
 
        
