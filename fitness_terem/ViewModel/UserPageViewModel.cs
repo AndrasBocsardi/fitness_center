@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace fitness_terem.ViewModel;
 
+[QueryProperty (nameof(Email), nameof(Email))]
 public partial class UserPageViewModel : ObservableObject
 {
+    [ObservableProperty]
+    string email;
 }

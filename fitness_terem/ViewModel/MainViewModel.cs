@@ -29,7 +29,7 @@ public partial class MainViewModel: ObservableObject
             }
             else
             {
-                await Shell.Current.GoToAsync(nameof(UserPage));
+                await Shell.Current.GoToAsync($"{nameof(UserPage)}?Email={Email}");
             }
         }
         else
