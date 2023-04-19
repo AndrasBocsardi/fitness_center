@@ -19,10 +19,7 @@ namespace fitness_terem.Model
 
         public int Client_ticket_id { get; set; }
 
-        public DateTime Date { get; set; }
-
-        [ForeignKey(nameof(Client.Client_id))]
-        public int Inserted_by_id { get; set; }
+        public DateTime Date { get; set; }        
 
         [ForeignKey(nameof(Gym.Gym_id))]
         public int Gym_id { get; set; } 

@@ -74,6 +74,19 @@ namespace fitness_terem
 
             return client.Description == "admin";
         }
+
+        public async Task AddNewTicket(string name, int price, int nr_of_days_valid, int nr_of_entry_valid, string startTime, string endTime)
+        {
+            await Init();
+            await conn.InsertAsync(new TicketType { Name = name, Price = price, Nr_of_days_valid = nr_of_days_valid, Nr_of_entry_valid = nr_of_entry_valid, Start_time_of_day = startTime, End_time_of_day = endTime, Gym_id = 1, Is_deleted = false });
+        }
+
+        public async Task AssignTicketToClient(int client_id, int ticket_id, int price)
+        {
+            await Init();
+            await conn.InsertAsync(new ClientTicket { Client_id = client_id, Ticket_id = ticket_id, Purchase_date = DateTime.Now, Entry_count = 0, Purchase_price = price, Is_valid = true, Gym_id = 1 });
+        }
+
        
     }
 }

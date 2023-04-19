@@ -13,3 +13,7 @@
 *.editorconfig
 *.editorconfig
 .vs/fitness_terem/v17/.suo
+*.cs
+*.backup
+*.cs
+*.v2

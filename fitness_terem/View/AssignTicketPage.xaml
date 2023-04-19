@@ -2,11 +2,74 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="fitness_terem.View.AssignTicketPage"
+             xmlns:viewmodel="clr-namespace:fitness_terem.ViewModel"
+             x:DataType="viewmodel:AssignTicketPageViewModel"
              Title="AssignTicketPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+    
+    <Grid Padding="20"
+          ColumnSpacing="10"
+          RowSpacing="40"
+          RowDefinitions="150, Auto, Auto, Auto, Auto, Auto, Auto"
+          ColumnDefinitions="*">
+
+        <Entry  
+               Placeholder="Enter ticket name"
+               Grid.Row="1"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding TicketName}"/>
+
+        <Entry Placeholder="Enter ticket price"
+               Grid.Row="2"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding TicketPrice}"/>
+
+        <Entry Placeholder="Number of days valid"
+               Grid.Row="3"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding NrOfDaysValid}"/>
+
+        <Entry Placeholder="Number of entry valid"
+               Grid.Row="4"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding NrOfEntryValid}"/>
+
+        <Entry Placeholder="From:"
+               Grid.Row="5"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding StartTimeOfDay}"/>
+
+        <Entry Placeholder="To:"
+               Grid.Row="6"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding EndTimeOfDay}"/>
+
+        <Button Text="To"
+                
+                Grid.Row="7"
+                MaximumWidthRequest="150"
+                TextColor="Black"
+                FontSize="18"/>
+
+
+
+    </Grid>
 </ContentPage>
