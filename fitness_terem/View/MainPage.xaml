@@ -26,6 +26,7 @@
 
         <Entry Placeholder="Enter password"
                Grid.Row="2"
+               IsPassword="True"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
