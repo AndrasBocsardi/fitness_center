@@ -5,42 +5,123 @@
              xmlns:viewmodel="clr-namespace:fitness_terem.ViewModel"
              x:DataType="viewmodel:UserPageViewModel"
              xmlns:model="clr-namespace:fitness_terem.Model"
-             Title="UserPage">
+             xmlns:local="clr-namespace:fitness_terem"
+             BackgroundImageSource="background.png">
+    <ContentPage.Resources>
+        <local:BoolToTextConverter x:Key="BoolToTextConverter"/>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid RowDefinitions="100, 50, 50, 50, 50, 80, 50, 50"
+              Padding="10"
+              ColumnDefinitions="*, *"
+              BackgroundColor="#3d3d3d"
+              RowSpacing="20"
+              MaximumWidthRequest="800">
+            <Label Text="Profile:" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#ded943"/>
+            <Label
+                Grid.Row="1"
+                Text="Name: "
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
 
-    <!--<ScrollView>
-        <Grid Padding="20"
-          ColumnSpacing="10"
-          RowSpacing="40"
-          RowDefinitions="50, Auto">
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding Client.Name}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
 
-            <Button Text="Show my tickets"
-                Command="{Binding ListClientsCommand}"
-                MaximumWidthRequest="200"
-                BackgroundColor="#ded943"
-                FontSize="20"/>
+            <Label
+                Grid.Row="2"
+                Text="Email:"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
 
-            <CollectionView ItemsSource="{Binding ClientList}" Grid.ColumnSpan="2" Grid.Row="2"
-                        
-                        MaximumWidthRequest="1000">
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding Client.Email}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontAttributes="Bold"
+                FontSize="26"/>
 
+            <Label
+                Grid.Row="3"
+                Text="Phone number:"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding Client.Phone_nr}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
+
+            <Label
+                Grid.Row="4"
+                Text="Address:"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="{Binding Client.Address}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="26"/>
+            <Label Text="Tickets:" Grid.Row="5" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#ded943"/>
+            <Grid  Grid.Row="6" ColumnDefinitions="*, *, *, *, *, *" Grid.ColumnSpan="2" >
+                <Label Text=" Purchase date" FontSize="18"  FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="Nr of entries" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Column="2" Text="Price" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Column="3" Text="Valid" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Column="4" Text="Gym" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+            </Grid>
+            <CollectionView ItemsSource="{Binding ClientTickets}" Grid.ColumnSpan="2" Grid.Row="8" >
+                <!--<CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>-->
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="viewmodel:ClientTicketWithGymName">
                         <Frame BackgroundColor="#3d3d3d">
                             <Grid ColumnDefinitions="*, *, *, *, *, *">
-                                <Label Text="{Binding Tic}" FontSize="18"/>
-                                <Label Grid.Column="1" Text="{Binding Name}" FontSize="18"/>
-                                <Label Grid.Column="2" Text="{Binding Email}" FontSize="18"/>
-                                <Label Grid.Column="3" Text="{Binding Password}" FontSize="18"/>
-                                <Label Grid.Column="4" Text="{Binding Phone_nr}" FontSize="18"/>
-                                <Label Grid.Column="5" Text="{Binding Address}" FontSize="18"/>
+                                <Label Text="{Binding ClientTicket.Purchase_date}" FontSize="18" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding ClientTicket.Entry_count}" FontSize="18" HorizontalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding ClientTicket.Purchase_price}" FontSize="18" HorizontalOptions="Center"/>
+                                <Label Grid.Column="3" Text="{Binding ClientTicket.Is_valid, Converter={StaticResource BoolToTextConverter}}" FontSize="18" HorizontalOptions="Center"/>
+                                <Label Grid.Column="4">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0}">
+                                            <Binding Path="GymName"/>
+                                            <Binding Path="ClientTicket.Gym_id"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                    <Label.FontSize>18</Label.FontSize>
+                                    <Label.HorizontalOptions>Center</Label.HorizontalOptions>
+                                </Label>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
             </CollectionView>
-
         </Grid>
-    </ScrollView>-->
+    </ScrollView>
 
 </ContentPage>

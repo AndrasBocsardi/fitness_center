@@ -42,7 +42,6 @@
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminPageViewModel}},
                                     Path=NavigateToClientDetailsCommand}" CommandParameter="{Binding .}"/>
                             </Frame.GestureRecognizers>
-                                
                             <Grid ColumnDefinitions="*, *, *, *, *, *">
                                 <Label Text="{Binding Client_id}" FontSize="18"/>
                                 <Label Grid.Column="1" Text="{Binding Name}" FontSize="18"/>

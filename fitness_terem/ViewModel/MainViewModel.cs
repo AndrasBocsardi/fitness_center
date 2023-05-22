@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using fitness_terem.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,14 @@ public partial class MainViewModel: ObservableObject
 
     [ObservableProperty]
     string password;
-
+    public static string LoggedInUserEmail { get; private set; }
     [RelayCommand]
     async Task LogIn()
     {
         if( await App.FitnessRepo.CheckLogin(Email, Password))
         {
-            
-            if(await App.FitnessRepo.ChechIfAdmin(Email))
+            MainViewModel.LoggedInUserEmail = Email;
+            if (await App.FitnessRepo.ChechIfAdmin(Email))
             {
                 await Shell.Current.GoToAsync(nameof(AdminPage));
             }

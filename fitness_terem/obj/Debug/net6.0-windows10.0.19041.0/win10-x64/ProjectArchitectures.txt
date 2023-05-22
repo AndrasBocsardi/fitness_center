@@ -1,1 +1,1 @@
-C:\Egyetem\.NET\Projekt\fitness_terem\fitness_center\fitness_terem\fitness_terem.csproj;x64
+E:\egyetem\VIIIfelev\NET\fitness_center\fitness_terem\fitness_terem.csproj;x64

@@ -49,7 +49,11 @@ namespace fitness_terem
                 await Init();
                 return await conn.Table<Client>().ToListAsync();
         }
-        
+        public async Task<List<TicketType>> GetAllTycketTypes()
+        {
+            await Init();
+            return await conn.Table<TicketType>().ToListAsync();
+        }
 
 
         public async Task<Boolean> CheckLogin(string email, string password)
@@ -90,6 +94,26 @@ namespace fitness_terem
             return await conn.InsertAsync(new ClientTicket { Client_id = client_id, Ticket_id = ticket_id, Purchase_date = DateTime.Now, Entry_count = 0, Purchase_price = price, Is_valid = true, Gym_id = 1 });
         }
 
-       
+        public async Task<List<ClientTicket>> GetClientTickets(int clientId)
+        {
+            await Init();
+            return await conn.Table<ClientTicket>()
+                             .Where(ticket => ticket.Client_id == clientId)
+                             .ToListAsync();
+        }
+
+        public async Task<Client> GetClient(string email)
+        {
+            await Init();
+            var client = await conn.FindAsync<Client>(c => c.Email == email);
+            return client;
+        }
+        public async Task<Gym> GetGymName(int gymId)
+        {
+            await Init();
+            var gym = await conn.FindAsync<Gym>(g => g.Gym_id == gymId);
+            return gym;
+        }
+        
     }
 }
