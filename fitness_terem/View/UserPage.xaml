@@ -10,8 +10,8 @@
     <ContentPage.Resources>
         <local:BoolToTextConverter x:Key="BoolToTextConverter"/>
     </ContentPage.Resources>
-    <ScrollView>
-        <Grid RowDefinitions="100, 50, 50, 50, 50, 80, 50, 50"
+    <ScrollView VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="100, 50, 50, 50, 50, 80, 50, Auto"
               Padding="10"
               ColumnDefinitions="*, *"
               BackgroundColor="#3d3d3d"
@@ -93,34 +93,34 @@
                 <Label Grid.Column="3" Text="Valid" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
                 <Label Grid.Column="4" Text="Gym" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
             </Grid>
-            <CollectionView ItemsSource="{Binding ClientTickets}" Grid.ColumnSpan="2" Grid.Row="8" >
-                <!--<CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
-                </CollectionView.ItemsLayout>-->
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="viewmodel:ClientTicketWithGymName">
-                        <Frame BackgroundColor="#3d3d3d">
-                            <Grid ColumnDefinitions="*, *, *, *, *, *">
-                                <Label Text="{Binding ClientTicket.Purchase_date}" FontSize="18" HorizontalOptions="Center"/>
-                                <Label Grid.Column="1" Text="{Binding ClientTicket.Entry_count}" FontSize="18" HorizontalOptions="Center"/>
-                                <Label Grid.Column="2" Text="{Binding ClientTicket.Purchase_price}" FontSize="18" HorizontalOptions="Center"/>
-                                <Label Grid.Column="3" Text="{Binding ClientTicket.Is_valid, Converter={StaticResource BoolToTextConverter}}" FontSize="18" HorizontalOptions="Center"/>
-                                <Label Grid.Column="4">
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{}{0}">
-                                            <Binding Path="GymName"/>
-                                            <Binding Path="ClientTicket.Gym_id"/>
-                                        </MultiBinding>
-                                    </Label.Text>
-                                    <Label.FontSize>18</Label.FontSize>
-                                    <Label.HorizontalOptions>Center</Label.HorizontalOptions>
-                                </Label>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
+            <ScrollView Grid.Row="7" WidthRequest="800" HorizontalOptions="Center" Grid.ColumnSpan="2">
+                <StackLayout >
+                    <CollectionView ItemsSource="{Binding ClientTickets}" Grid.ColumnSpan="2" Grid.Row="7" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodel:ClientTicketWithGymName">
+                                <Frame BackgroundColor="#3d3d3d">
+                                    <Grid ColumnDefinitions="*, *, *, *, *, *">
+                                        <Label Text="{Binding ClientTicket.Purchase_date}" FontSize="18" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding ClientTicket.Entry_count}" FontSize="18" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="2" Text="{Binding ClientTicket.Purchase_price}" FontSize="18" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="3" Text="{Binding ClientTicket.Is_valid, Converter={StaticResource BoolToTextConverter}}" FontSize="18" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="4">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0}">
+                                                    <Binding Path="GymName"/>
+                                                    <Binding Path="ClientTicket.Gym_id"/>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                            <Label.FontSize>18</Label.FontSize>
+                                            <Label.HorizontalOptions>Center</Label.HorizontalOptions>
+                                        </Label>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </ScrollView>
 

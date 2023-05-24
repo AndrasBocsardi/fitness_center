@@ -21,13 +21,6 @@ public partial class UserPageViewModel : ObservableObject
     string email;
     [ObservableProperty]
     int clientId;
-    
-    //string gymName;
-    //public string GymName
-    //{
-    //    get { return gymName; }
-    //    set { SetProperty(ref gymName, value); }
-    //}
 
     public ObservableCollection<ClientTicketWithGymName> ClientTickets { get; set; } = new();
     public UserPageViewModel()

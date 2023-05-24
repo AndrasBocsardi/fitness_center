@@ -125,7 +125,8 @@ public partial class AssignTicketPageViewModel : ObservableObject
         }
 
     }
-    public AssignTicketPageViewModel() { 
+   
+    public AssignTicketPageViewModel() {
         LoadTickets();
         IsEntryVisible = false;
     }
@@ -133,15 +134,18 @@ public partial class AssignTicketPageViewModel : ObservableObject
     [RelayCommand]
     async void AssignTicket()
     {
-        TicketType ticketType = await App.FitnessRepo.AddNewTicket(TicketName, TicketPrice, NrOfDaysValid, NrOfEntryValid, StartTimeOfDay, EndTimeOfDay);
+        if (SelectedTicket != null)
+        {
 
-        if(await App.FitnessRepo.AssignTicketToClient(Client.Client_id, ticketType.Ticket_id, ticketType.Price) > 0){
-            await Shell.Current.DisplayAlert("The ticket was assigned", "You will be redirected", "OK");
-            await Shell.Current.GoToAsync(nameof(AdminPage));
+            if (await App.FitnessRepo.AssignTicketToClient(Client.Client_id, SelectedTicket.Ticket_id, SelectedTicket.Price) > 0)
+            {
+
+                await Shell.Current.DisplayAlert("The ticket was assigned", "You will be redirected", "OK");
+                await Shell.Current.GoToAsync(nameof(AdminPage));
+            }
         }
-        
+         
     }
-
     async void LoadTickets()
     {
         List<TicketType> tickets = await App.FitnessRepo.GetAllTycketTypes();
@@ -161,8 +165,6 @@ public partial class AssignTicketPageViewModel : ObservableObject
         }
         else if (selectedTicket.Nr_of_entry_valid > 0)
         {
-            Debug.WriteLine(selectedTicket.Nr_of_days_valid);
-            Debug.WriteLine(selectedTicket.Nr_of_entry_valid);
             IsDaysVisible = false;
             IsEntriesVisible = true;
         }
@@ -173,12 +175,49 @@ public partial class AssignTicketPageViewModel : ObservableObject
         }
         TicketPrice = selectedTicket.Price;
         NrOfDaysValid = selectedTicket.Nr_of_days_valid;
-        Debug.WriteLine(isEntriesVisible);
-        Debug.WriteLine(isDaysVisible);
         NrOfEntryValid = selectedTicket.Nr_of_entry_valid;
         StartTimeOfDay = selectedTicket.Start_time_of_day;
         EndTimeOfDay = selectedTicket.End_time_of_day;
         
+    }
+    private bool isSelectTicketVisible;
+    public bool IsSelectTicketVisible
+    {
+        get => isSelectTicketVisible;
+        set => SetProperty(ref isSelectTicketVisible, value);
+    }
+
+    private bool isEnterNameVisible;
+    public bool IsEnterNameVisible
+    {
+        get => isEnterNameVisible;
+        set => SetProperty(ref isEnterNameVisible, value);
+    }
+
+    [RelayCommand]
+    void AddNewTicketType()
+    {
+        IsSelectTicketVisible = false;
+        IsEnterNameVisible = true;
+    }
+
+    [RelayCommand]
+    void SelectTicket()
+    {
+        IsSelectTicketVisible = true;
+        IsEnterNameVisible = false;
+    }
+    [RelayCommand]
+    async void AddNewTicket()
+    {
+        TicketType ticketType = await App.FitnessRepo.AddNewTicket(TicketName, TicketPrice, NrOfDaysValid, NrOfEntryValid, StartTimeOfDay, EndTimeOfDay);
+
+        if (await App.FitnessRepo.AssignTicketToClient(Client.Client_id, ticketType.Ticket_id, ticketType.Price) > 0)
+        {
+            await Shell.Current.DisplayAlert("The ticket was created", "You will be redirected", "OK");
+            await Shell.Current.GoToAsync(nameof(AdminPage));
+        }
+
     }
 }
 

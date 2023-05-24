@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using fitness_terem.Model;
 using fitness_terem.View;
+using Microsoft.Maui.Animations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,11 +14,41 @@ namespace fitness_terem.ViewModel;
 
 public partial class AdminPageViewModel :ObservableObject
 {
+    [ObservableProperty]
+    Client client;
+
     public ObservableCollection<Client> ClientList { get; set; } = new();
 
-    [ObservableProperty]
+    private ObservableCollection<Client> filteredClientList;
+    public ObservableCollection<Client> FilteredClientList
+    {
+        get => filteredClientList;
+        set => SetProperty(ref filteredClientList, value);
+    }
+   
     string filterText;
-    
+    public string FilterText
+    {
+        get => filterText;
+        set
+        {
+            SetProperty(ref filterText, value);
+            FilterClients();
+        }
+    }
+
+    void FilterClients()
+    {
+        if (string.IsNullOrWhiteSpace(FilterText))
+        {
+            FilteredClientList = ClientList;
+        }
+        else
+        {
+            string filter = FilterText.ToLowerInvariant();
+            FilteredClientList = new ObservableCollection<Client>(ClientList.Where(client => client.Name.ToLowerInvariant().Contains(filter)));
+        }
+    }
 
     [RelayCommand]
     async void ListClients()
@@ -33,7 +64,7 @@ public partial class AdminPageViewModel :ObservableObject
         {
             ClientList.Add(client);
         }
-
+        FilterClients();
     }
 
     [RelayCommand]
@@ -50,9 +81,9 @@ public partial class AdminPageViewModel :ObservableObject
         {
             {"Client", client }
         });
-    }
-    
 
-    
+    }
+
+
 
 }

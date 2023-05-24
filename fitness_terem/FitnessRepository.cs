@@ -8,6 +8,7 @@ using fitness_terem.Model;
 using Microsoft.Maui.ApplicationModel.Communication;
 using System.Net;
 using System.Xml.Linq;
+using Entry = fitness_terem.Model.Entry;
 
 namespace fitness_terem
 {
@@ -49,12 +50,17 @@ namespace fitness_terem
                 await Init();
                 return await conn.Table<Client>().ToListAsync();
         }
+
+        public async Task<List<ClientTicket>> GetAllTickets()
+        {
+            await Init();
+            return await conn.Table<ClientTicket>().ToListAsync();
+        }
         public async Task<List<TicketType>> GetAllTycketTypes()
         {
             await Init();
             return await conn.Table<TicketType>().ToListAsync();
         }
-
 
         public async Task<Boolean> CheckLogin(string email, string password)
         {
@@ -77,15 +83,6 @@ namespace fitness_terem
             var client = await conn.FindAsync<Client>(c => c.Email == email);
 
             return client.Description == "admin";
-        }
-
-        public async Task<TicketType> AddNewTicket(string name, int price, int nr_of_days_valid, int nr_of_entry_valid, string startTime, string endTime)
-        {
-            await Init();
-            TicketType newTicketType = new TicketType { Name = name, Price = price, Nr_of_days_valid = nr_of_days_valid, Nr_of_entry_valid = nr_of_entry_valid, Start_time_of_day = startTime, End_time_of_day = endTime, Gym_id = 1, Is_deleted = false };
-            await conn.InsertAsync(newTicketType);
-
-            return newTicketType;
         }
 
         public async Task<int> AssignTicketToClient(int client_id, int ticket_id, int price)
@@ -114,6 +111,82 @@ namespace fitness_terem
             var gym = await conn.FindAsync<Gym>(g => g.Gym_id == gymId);
             return gym;
         }
-        
+
+        public async Task<Client> GetClientById(int id)
+        {
+            await Init();
+            var client = await conn.FindAsync<Client>(c => c.Client_id == id);
+            return client;
+        }
+        public async Task DeleteClient(int id)
+        {
+            await Init();
+            var client=await conn.FindAsync<Client>(c => c.Client_id == id);
+            await conn.DeleteAsync(client);
+        }
+        public async Task DeleteTicket(int id)
+        {
+            await Init();
+            var ticket = await conn.FindAsync<ClientTicket>(t => t.Client_ticket_id==id);
+            await conn.DeleteAsync(ticket);
+        }
+        public async Task UpdateEntryCount(int ticketId, int entryCount)
+        {
+            await Init();
+            var ticket= await conn.FindAsync<ClientTicket>(c => c.Client_ticket_id == ticketId);
+            ticket.Entry_count = entryCount;
+            await conn.UpdateAsync(ticket);
+           // return ticket;
+        }
+
+        public async Task<int> GetMaxNrOfEntries(int ticketId)
+        {
+            await Init();
+            var nr = await conn.FindAsync<TicketType>(t =>t.Ticket_id==ticketId);
+            return nr.Nr_of_entry_valid;
+        }
+
+        public async Task<int> GetNrOfDaysValid(int ticketId)
+        {
+            await Init();
+            var nr = await conn.FindAsync<TicketType>(t => t.Ticket_id == ticketId);
+            return nr.Nr_of_days_valid;
+        }
+        public async Task UpdateValidity(int ticketId)
+        {
+            await Init();
+            var ticket = await conn.FindAsync<ClientTicket>(c => c.Client_ticket_id == ticketId);
+            ticket.Is_valid = false; 
+            await conn.UpdateAsync(ticket);
+
+        }
+
+        public async Task<int> InsertEntry(Entry entry)
+        {
+            await Init();
+            return await conn.InsertAsync(entry);
+        }
+
+        public async Task<List<Gym>> GetAllGyms()
+        {
+            await Init();
+            return await conn.Table<Gym>().ToListAsync();
+        }
+
+        public async Task<List<TicketType>> GetTicketsByGym(int gymId)
+        {
+            await Init();
+            return await conn.Table<TicketType>()
+                              .Where(g => g.Gym_id==gymId)
+                              .ToListAsync();
+        }
+        public async Task<TicketType> AddNewTicket(string name, int price, int nr_of_days_valid, int nr_of_entry_valid, string startTime, string endTime)
+        {
+            await Init();
+            TicketType newTicketType = new TicketType { Name = name, Price = price, Nr_of_days_valid = nr_of_days_valid, Nr_of_entry_valid = nr_of_entry_valid, Start_time_of_day = startTime, End_time_of_day = endTime, Gym_id = 1, Is_deleted = false };
+            await conn.InsertAsync(newTicketType);
+
+            return newTicketType;
+        }
     }
 }

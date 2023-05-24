@@ -37,6 +37,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AssignTicketPage>();
         builder.Services.AddTransient<AssignTicketPageViewModel>();
 
+
         return builder.Build();
 	}
 }
