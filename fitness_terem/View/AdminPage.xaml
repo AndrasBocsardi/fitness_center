@@ -5,21 +5,25 @@
              x:Class="fitness_terem.AdminPage"
              x:DataType="viewmodel:AdminPageViewModel"
              xmlns:model ="clr-namespace:fitness_terem.Model"
+              xmlns:local="clr-namespace:fitness_terem"
              BackgroundImageSource="background.png">
+    <ContentPage.Resources>
+        <local:BoolToTextConverter x:Key="BoolToTextConverter"/>
+    </ContentPage.Resources>
     <ScrollView>
-    <Grid Padding="20"
+        <Grid Padding="20"
           ColumnSpacing="10"
           RowSpacing="40"
           RowDefinitions="50, 50, Auto"
           ColumnDefinitions="0.5*, 0.5*">
 
-        <Button Text="List clients"
+            <Button Text="List clients"
                 Command="{Binding ListClientsCommand}"
                 MaximumWidthRequest="200"
                 BackgroundColor="#ded943"
                 FontSize="20"/>
 
-        <Button Text="Add new client"
+            <Button Text="Add new client"
                 Grid.Column="1"
                 Command="{Binding NavigateToAddClientCommand}"
                 MaximumWidthRequest="200"
@@ -29,12 +33,13 @@
             <SearchBar Grid.Row="1"
                        Grid.ColumnSpan="2"
                        BackgroundColor="#3d3d3d"
+                       Text="{Binding FilterText, Mode=TwoWay}"
                        MaximumWidthRequest="800"/>
 
-            <CollectionView ItemsSource="{Binding ClientList}" Grid.ColumnSpan="2" Grid.Row="2"
+            <CollectionView ItemsSource="{Binding FilteredClientList}" Grid.ColumnSpan="2" Grid.Row="2"
                         
                         MaximumWidthRequest="1000">
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Client">
                         <Frame BackgroundColor="#3d3d3d">
@@ -42,7 +47,6 @@
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminPageViewModel}},
                                     Path=NavigateToClientDetailsCommand}" CommandParameter="{Binding .}"/>
                             </Frame.GestureRecognizers>
-                                
                             <Grid ColumnDefinitions="*, *, *, *, *, *">
                                 <Label Text="{Binding Client_id}" FontSize="18"/>
                                 <Label Grid.Column="1" Text="{Binding Name}" FontSize="18"/>
@@ -54,9 +58,8 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
+
             </CollectionView>
-       
-    </Grid>
+        </Grid>
     </ScrollView>
 </ContentPage>

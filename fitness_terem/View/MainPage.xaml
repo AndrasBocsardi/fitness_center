@@ -35,9 +35,10 @@
 
         <Button Text="Log in"
                 Command="{Binding LogInCommand}"
+                BackgroundColor="#ded943"
+                FontSize="20"
                 Grid.Row="3"
-                MaximumWidthRequest="150"
-                TextColor="Black"/>
+                MaximumWidthRequest="200"/>
 
 
     </Grid>

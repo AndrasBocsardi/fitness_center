@@ -4,73 +4,200 @@
              x:Class="fitness_terem.View.AssignTicketPage"
              xmlns:viewmodel="clr-namespace:fitness_terem.ViewModel"
              x:DataType="viewmodel:AssignTicketPageViewModel"
-             Title="AssignTicketPage">
-    
-    
+             BackgroundImageSource="background.png">
+
+    <ContentPage.Resources>
+        <viewmodel:AssignTicketPageViewModel x:Key="viewModel" />
+    </ContentPage.Resources>
     <Grid Padding="20"
           ColumnSpacing="10"
           RowSpacing="40"
-          RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
-          ColumnDefinitions="*">
+          RowDefinitions="Auto, Auto,Auto, Auto, Auto, Auto, Auto"
+          ColumnDefinitions="*, *">
 
+        <Button Text="Add new ticket type" Command="{Binding AddNewTicketTypeCommand}"
+                MaximumWidthRequest="250"
+                HorizontalOptions="Start"
+                BackgroundColor="#ded943"
+                FontSize="20"/>
+
+        <Button Text="Select a ticket" Command="{Binding SelectTicketCommand}" Grid.Row="1" 
+                MaximumWidthRequest="250"
+                 HorizontalOptions="Start"
+                BackgroundColor="#ded943"
+                FontSize="20"/>
+        <Label Text="Name:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry  
                Placeholder="Enter ticket name"
+             IsVisible="{Binding  IsEnterNameVisible}" 
                Grid.Row="0"
+             Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
                TextColor="Black"
                Text="{Binding TicketName}"/>
-
+        <Label Text="Price:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry Placeholder="Enter ticket price"
-               
+                IsVisible="{Binding  IsEnterNameVisible}" 
                Grid.Row="1"
+                Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
                TextColor="Black"
                Text="{Binding TicketPrice}"/>
-
+        <Label Text="Nr of days:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry Placeholder="Number of days valid"
                Grid.Row="2"
+                Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
+                IsVisible="{Binding  IsEnterNameVisible}" 
                TextColor="Black"
                Text="{Binding NrOfDaysValid}"/>
-
+        <Label Text="Nr of entries:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry Placeholder="Number of entry valid"
                Grid.Row="3"
+                Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
+                IsVisible="{Binding  IsEnterNameVisible}" 
                TextColor="Black"
                Text="{Binding NrOfEntryValid}"/>
-
+        <Label Text="From:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry Placeholder="From:"
                Grid.Row="4"
+                Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
+                IsVisible="{Binding  IsEnterNameVisible}" 
                TextColor="Black"
                Text="{Binding StartTimeOfDay}"/>
-
+        <Label Text="To:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" 
+               FontAttributes="Bold" HorizontalOptions="End" 
+               TextColor="#ded943" FontSize="16" IsVisible="{Binding  IsEnterNameVisible}"/>
         <Entry Placeholder="To:"
                Grid.Row="5"
+                Grid.Column="1"
                MaximumWidthRequest="400"
                BackgroundColor="White"
                PlaceholderColor="SlateGray"
+                IsVisible="{Binding  IsEnterNameVisible}" 
                TextColor="Black"
                Text="{Binding EndTimeOfDay}"/>
 
-        <Button Text="Assign"
-                Command="{Binding AssignTicketCommand}"
+        <Button Text="Add"
+                Command="{Binding AddNewTicketCommand}"
+                 Grid.Column="1"
+                 IsVisible="{Binding  IsEnterNameVisible}" 
                 Grid.Row="6"
+                 BackgroundColor="#ded943"
                 MaximumWidthRequest="150"
                 TextColor="Black"
                 FontSize="18"/>
 
+        <Label Text="Select a ticket:" 
+               Margin="0, 40, 0, 0" 
+               Grid.Row="0" 
+               Grid.Column="0" 
+               FontAttributes="Bold" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End" 
+               TextColor="#ded943" 
+                IsVisible="{Binding IsSelectTicketVisible}" 
+               FontSize="18"/>
+        <Picker  
+            x:DataType="viewmodel:AssignTicketPageViewModel"
+               Grid.Row="0"
+             IsVisible="{Binding IsSelectTicketVisible}" 
+                Grid.Column="1"
+               ItemsSource="{Binding Tickets, Source={StaticResource viewModel}}"
+               ItemDisplayBinding="{Binding Name}"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               TextColor="Black"
+            Margin="0, 40, 0, 0"
+               SelectedItem="{Binding SelectedTicket}"
+          HorizontalOptions="Start"
+            FontSize="16"/>
+        <Label Text="Price:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"  FontAttributes="Bold" HorizontalOptions="End" TextColor="#ded943" FontSize="16" IsVisible="{Binding IsEntryVisible}"/>
+        <Entry Grid.Row="1"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding TicketPrice}"
+               IsVisible="{Binding IsEntryVisible}"/>
+        <Label Text="Number of days:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"  FontAttributes="Bold" HorizontalOptions="End" TextColor="#ded943" FontSize="16" IsVisible="{Binding IsDaysVisible}"/>
+        <Entry Grid.Row="2"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding NrOfDaysValid}"
+               IsVisible="{Binding IsDaysVisible}"/>
 
+        <Label Text="Number of entries:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"  FontAttributes="Bold" HorizontalOptions="End" TextColor="#ded943" FontSize="16" IsVisible="{Binding IsEntriesVisible}"/>
+        <Entry Grid.Row="2"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding NrOfEntryValid}"
+               IsVisible="{Binding IsEntriesVisible}"/>
 
+        <Label Text="From:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"  FontAttributes="Bold" HorizontalOptions="End" TextColor="#ded943" FontSize="16" IsVisible="{Binding IsEntryVisible}"/>
+        <Entry Grid.Row="3"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding StartTimeOfDay}"
+               IsVisible="{Binding IsEntryVisible}"/>
+
+        <Label Text="To:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"  FontAttributes="Bold" HorizontalOptions="End" TextColor="#ded943" FontSize="16" IsVisible="{Binding IsEntryVisible}"/>
+        <Entry Grid.Row="4"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               MaximumWidthRequest="400"
+               BackgroundColor="White"
+               PlaceholderColor="SlateGray"
+               TextColor="Black"
+               Text="{Binding EndTimeOfDay}"
+               IsVisible="{Binding IsEntryVisible}"/>
+
+        <Button Text="Assign"
+                Command="{Binding AssignTicketCommand}"
+                Grid.Row="5"
+                Grid.Column="1"
+                MaximumWidthRequest="150"
+                BackgroundColor="#ded943"
+                FontSize="20"
+                TextColor="Black"
+                IsVisible="{Binding IsEntryVisible}"
+                HorizontalOptions="Start"/>
+         
     </Grid>
 </ContentPage>

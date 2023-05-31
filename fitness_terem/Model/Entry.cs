@@ -25,7 +25,5 @@ namespace fitness_terem.Model
         public int Gym_id { get; set; } 
 
 
-
-
     }
 }

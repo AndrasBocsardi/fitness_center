@@ -4,13 +4,12 @@
              x:Class="fitness_terem.View.AddClient"
              xmlns:viewmodel="clr-namespace:fitness_terem.ViewModel"
              x:DataType="viewmodel:AddClientViewModel"
-             BackgroundImageSource="background.png"
-             Title="AddClient">
+             BackgroundImageSource="background.png">
 
     <Grid Padding="20"
           ColumnSpacing="10"
           RowSpacing="40"
-          RowDefinitions="150, Auto, Auto, Auto, Auto, Auto, Auto"
+          RowDefinitions="50, Auto, Auto, Auto, Auto, Auto, Auto"
           ColumnDefinitions="*">
 
         <Entry  
@@ -58,7 +57,7 @@
                 Command="{Binding AddClientCommand}"
                 Grid.Row="6"
                 MaximumWidthRequest="150"
-                TextColor="Black"
+                BackgroundColor="#ded943"
                 FontSize="18"/>
 
 

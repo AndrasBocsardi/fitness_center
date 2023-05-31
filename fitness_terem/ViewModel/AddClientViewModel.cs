@@ -31,10 +31,17 @@ public partial class AddClientViewModel: ObservableObject
     [RelayCommand]
     async void AddClient()
     {
-        if(await App.FitnessRepo.AddNewClient(Name, Email, Password, Address, Phone_nr) > 0)
+        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(Phone_nr))
         {
-            await Shell.Current.DisplayAlert("New client was created", "You will be redirected", "OK");
-            await Shell.Current.GoToAsync(nameof(AdminPage));
+            await Shell.Current.DisplayAlert("All field are required", "", "OK");
+        }
+        else
+        {
+            if (await App.FitnessRepo.AddNewClient(Name, Email, Password, Address, Phone_nr) > 0)
+            {
+                await Shell.Current.DisplayAlert("New client was created", "You will be redirected", "OK");
+                await Shell.Current.GoToAsync(nameof(AdminPage));
+            }
         }
 
     }
